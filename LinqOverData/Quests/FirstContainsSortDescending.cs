@@ -19,12 +19,16 @@ namespace LinqOverData.Quests
 
         public static Airport Function(List<Airport> airports)
         {
-            return null;
+            return airports.Where(x => x.Name.Contains("Airstrip")).Where(a => a.IsoCountry == "BR").OrderByDescending(a => a.Name).First();
         }
 
         public static Airport Linq(List<Airport> airports)
         {
-            return null;
+            var query = from a in airports
+                   where a.Name.Contains("Airstrip") && a.IsoCountry == "BR"
+                   orderby a.Name descending
+                   select a;
+            return query.First();
         }
     }
 }

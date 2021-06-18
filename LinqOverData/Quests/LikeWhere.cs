@@ -13,17 +13,30 @@ namespace LinqOverData.Quests
     {
         public static List<Airport> Iterate(List<Airport> airports)
         {
-            return null;
+            var output = new List<Airport>();
+
+            foreach (var airport in airports)
+            {
+                if (airport.Name.Contains("Heliport"))
+                {
+                    output.Add(airport);
+                }
+            }
+
+            return output;
         }
 
         public static List<Airport> Function(List<Airport> airports)
         {
-            return null;
+            return airports.Where(a => a.Name.Contains("Heliport")).ToList();
         }
 
         public static List<Airport> Linq(List<Airport> airports)
         {
-            return null;
+            var query = from a in airports
+                         where a.Name.Contains("Heliport")
+                         select a;
+            return query.ToList();
         }
     }
 }

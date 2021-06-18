@@ -20,12 +20,15 @@ namespace LinqOverData.Quests
 
         public static Airport Function(List<Airport> airports)
         {
-            return null;
+            return airports.OrderBy(x => x.Name).First();
         }
 
         public static Airport Linq(List<Airport> airports)
         {
-            return null;
+            var query = from a in airports
+                   orderby a.Name
+                   select a;
+            return query.First();
         }
-}
+    }
 }
